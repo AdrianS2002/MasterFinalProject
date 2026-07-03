@@ -1,0 +1,232 @@
+/* ── Page layout ──────────────────────────────────────────────────────────── */
+.market-page {
+  max-width: 1200px;
+  margin:    0 auto;
+  padding:   2rem 1.5rem 4rem;
+  font-family: 'Segoe UI', sans-serif;
+  color: #2c3e50;
+}
+
+/* ── Page header ──────────────────────────────────────────────────────────── */
+.page-header {
+  display:         flex;
+  align-items:     center;
+  flex-wrap:       wrap;
+  gap:             1rem;
+  margin-bottom:   1.8rem;
+}
+
+.page-title {
+  font-size:   2rem;
+  font-weight: 700;
+  color:       #1a252f;
+  margin:      0;
+}
+
+.page-subtitle {
+  color:       #7f8c8d;
+  font-size:   0.95rem;
+  margin:      0;
+  flex:        1;
+}
+
+.btn-refresh {
+  padding:          0.5rem 1.4rem;
+  background:       #4f81bd;
+  color:            #fff;
+  border:           none;
+  border-radius:    6px;
+  font-size:        0.9rem;
+  cursor:           pointer;
+  transition:       background 0.2s;
+}
+
+.btn-refresh:hover  { background: #3a6ea0; }
+.btn-refresh:disabled { background: #aab8c9; cursor: not-allowed; }
+
+/* ── Error banner ──────────────────────────────────────────────────────────── */
+.error-banner {
+  background:    #fdecea;
+  border-left:   4px solid #e74c3c;
+  padding:       0.8rem 1.2rem;
+  border-radius: 4px;
+  margin-bottom: 1.2rem;
+  color:         #c0392b;
+  font-size:     0.9rem;
+}
+
+/* ── Loading overlay ──────────────────────────────────────────────────────── */
+.loading-overlay {
+  display:         flex;
+  flex-direction:  column;
+  align-items:     center;
+  padding:         3rem 0;
+  color:           #7f8c8d;
+}
+
+.spinner {
+  width:         42px;
+  height:        42px;
+  border:        5px solid #dfe6ed;
+  border-top:    5px solid #4f81bd;
+  border-radius: 50%;
+  animation:     spin 0.8s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Tab bar ──────────────────────────────────────────────────────────────── */
+.tab-bar {
+  display:         flex;
+  gap:             0.5rem;
+  margin-bottom:   1.5rem;
+  border-bottom:   2px solid #dfe6ed;
+  padding-bottom:  0.5rem;
+}
+
+.tab-btn {
+  padding:       0.55rem 1.6rem;
+  border:        none;
+  background:    transparent;
+  font-size:     0.95rem;
+  font-weight:   500;
+  color:         #7f8c8d;
+  cursor:        pointer;
+  border-radius: 6px 6px 0 0;
+  transition:    all 0.2s;
+}
+
+.tab-btn:hover  { background: #eaf0f8; color: #4f81bd; }
+.tab-btn.active {
+  background:  #4f81bd;
+  color:       #fff;
+  font-weight: 600;
+}
+
+/* ── Stat card row ────────────────────────────────────────────────────────── */
+.card-row {
+  display:               grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap:                   1rem;
+  margin-bottom:         1.8rem;
+}
+
+.stat-card {
+  background:    #fff;
+  border:        1px solid #e0e7ef;
+  border-radius: 10px;
+  padding:       1rem 1.2rem;
+  box-shadow:    0 2px 6px rgba(0,0,0,0.06);
+  text-align:    center;
+}
+
+.stat-label {
+  font-size:     0.78rem;
+  color:         #95a5a6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+
+.stat-value {
+  font-size:   1.1rem;
+  font-weight: 600;
+  color:       #2c3e50;
+}
+
+.stat-value.red   { color: #e74c3c; }
+.stat-value.green { color: #27ae60; }
+
+/* Badge variants for market state */
+.badge-green   { color: #27ae60; }
+.badge-yellow  { color: #f39c12; }
+.badge-grey    { color: #7f8c8d; }
+
+/* ── Chart cards ──────────────────────────────────────────────────────────── */
+.chart-card {
+  background:    #fff;
+  border:        1px solid #e0e7ef;
+  border-radius: 12px;
+  padding:       1.5rem 1.8rem;
+  box-shadow:    0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 1.8rem;
+}
+
+.chart-title {
+  font-size:   1.15rem;
+  font-weight: 600;
+  margin:      0 0 0.3rem;
+  color:       #1a252f;
+}
+
+.chart-desc {
+  font-size:     0.85rem;
+  color:         #7f8c8d;
+  margin-bottom: 1.2rem;
+  line-height:   1.5;
+}
+
+.chart-container {
+  position: relative;
+  height:   320px;
+}
+
+.chart-container--tall {
+  height: 420px;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.empty-state {
+  text-align:    center;
+  padding:       3rem 1rem;
+  color:         #7f8c8d;
+  background:    #f8fafc;
+  border:        1px dashed #cdd3d9;
+  border-radius: 10px;
+  margin-bottom: 1.8rem;
+}
+
+.empty-state .hint {
+  font-size: 0.85rem;
+  margin-top: 0.6rem;
+}
+
+.empty-state code {
+  background:    #e8edf2;
+  padding:       0.2em 0.5em;
+  border-radius: 4px;
+  font-size:     0.85rem;
+}
+
+/* ── Info callout ─────────────────────────────────────────────────────────── */
+.info-callout {
+  background:    #eaf4fb;
+  border-left:   4px solid #4f81bd;
+  border-radius: 6px;
+  padding:       1.2rem 1.5rem;
+  margin-bottom: 1.8rem;
+}
+
+.info-callout h3 {
+  margin:      0 0 0.8rem;
+  font-size:   1rem;
+  font-weight: 600;
+  color:       #1a252f;
+}
+
+.info-callout ol {
+  margin:      0;
+  padding-left: 1.4rem;
+  color:       #2c3e50;
+  font-size:   0.88rem;
+  line-height: 1.7;
+}
+
+.info-callout code {
+  background:    rgba(79,129,189,0.15);
+  padding:       0.15em 0.45em;
+  border-radius: 4px;
+  font-size:     0.85em;
+  color:         #2e5f9e;
+}

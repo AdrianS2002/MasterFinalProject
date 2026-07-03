@@ -1,0 +1,187 @@
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+:root {
+  --font-primary: 'Poppins', sans-serif;
+
+  --primary-bg: #0c1b2a;
+  --secondary-bg: rgba(0, 43, 54, 0.85);
+
+  --text-color: #e8fdfd;
+  --secondary-text-color: #a7bfc9;
+
+
+  --button-bg: #3fe66c;
+  --button-hover-bg: #32c65a;
+
+
+  --button1-bg: #00bcd4;
+  --button1-hover-bg: #0097a7;
+
+
+  --input-bg: rgba(255, 255, 255, 0.07);
+  --input-text: #e0f7fa;
+  --border-color: rgba(10, 151, 36, 0.703);
+
+  --padding-lg: 2rem;
+  --padding-md: 1rem;
+  --border-radius: 10px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-primary);
+  align-content: center;
+}
+
+.alert-danger,
+.error-message {
+  color: #ff0400;
+  background-color: rgba(255, 102, 102, 0.15);
+  border-color: rgba(255, 102, 102, 0.3);
+  padding: var(--padding-md);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 102, 102, 0.3);
+  text-align: center;
+  margin-bottom: var(--padding-md);
+  font-weight: bold;
+}
+
+.success-message {
+  color: #3fe66c; 
+  background-color: rgba(63, 230, 108, 0.15); 
+  border-color: rgba(63, 230, 108, 0.3);
+  padding: var(--padding-md);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(63, 230, 108, 0.3);
+  text-align: center;
+  margin-bottom: var(--padding-md);
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: var(--padding-md);
+  font-size: 16px;
+  border: 2px solid var(--input-text);
+  border-radius: var(--border-radius);
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+input:focus {
+  border-color: var(--button-bg);
+}
+
+button {
+  padding: var(--padding-md) var(--padding-lg);
+  font-size: 16px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.btn-secondary {
+  background-color: var(--input-text);
+  color: var(--text-color);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-bg);
+}
+
+button:disabled {
+  background-color: rgba(233, 69, 96, 0.5);
+  cursor: not-allowed;
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.2);
+  border-left-color: #00ffc8;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  animation: spin 1s linear infinite;
+  margin: var(--padding-md) auto;
+}
+
+@keyframes spin {
+  to {
+      transform: rotate(360deg);
+  }
+}
+
+html,
+body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background-color: var(--primary-bg);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.ng-select {
+  background-color: var(--secondary-bg) !important;
+  color: var(--input-text) !important;
+  padding: 6px !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: var(--border-radius);
+  font-family: var(--font-primary);
+  font-size: 1rem;
+}
+
+.ng-select .ng-select-container {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  padding: 6px !important;
+  border: none;
+  border-radius: var(--border-radius);
+}
+
+.ng-dropdown-panel {
+  background-color: var(--secondary-bg) !important;
+  color: var(--input-text) !important;
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 12px rgba(0, 255, 200, 0.1);
+  overflow: hidden;
+}
+
+.ng-option {
+  background-color: var(--input-bg) !important;
+  color: var(--input-text) !important;
+  padding: 10px 1rem !important;
+  text-align: center !important;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.ng-option:hover,
+.ng-option-marked {
+  background-color: var(--button-hover-bg) !important;
+  color: var(--primary-bg) !important;
+}
+
+.ng-option-selected {
+  background-color: var(--button-bg) !important;
+  color: var(--primary-bg) !important;
+  font-weight: bold;
+}

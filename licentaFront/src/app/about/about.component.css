@@ -1,0 +1,63 @@
+.about-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 6rem 1rem 4rem 1rem;
+    background-color: var(--primary-bg);
+    min-height: 100vh;
+  }
+  
+  .section-box {
+    max-width: 850px;
+    background-color: var(--secondary-bg);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: 0 0 15px rgba(0, 255, 200, 0.08);
+    line-height: 1.7;
+    animation: fadeInUp 4s ease both;
+
+    margin: 3rem auto;
+  }
+  
+  h1 {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--text-color);
+    font-size: 2.2rem;
+    font-weight: 600;
+    text-align: center;
+  }
+  
+  .about p {
+    font-size: 1.05rem;
+    color: var(--secondary-text-color);
+    margin-bottom: 1.5rem;
+  }
+  
+  .faculty-link {
+    color: #3fe66c;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease, border-bottom 0.3s ease;
+    border-bottom: 1px dashed #3fe66c;
+  }
+  
+  .faculty-link:hover {
+    color: #66ffcc;
+    border-bottom: 1px solid #66ffcc;
+  }
+
+  
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(90px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

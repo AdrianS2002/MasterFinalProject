@@ -1,0 +1,46 @@
+<div class="login-background">
+  <div class="login-box">
+    <p>Sign Up</p>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    @if(successMessage){
+      <div class="success-message">{{successMessage}}</div>
+    }
+    
+
+    <form (ngSubmit)="signup()" #signupForm="ngForm">
+      <div class="user-box">
+        <input required name="username" type="text" [(ngModel)]="username" >
+        <label>Username</label>
+      </div>
+      <div class="user-box">
+        <input required name="password" type="password" [(ngModel)]="password" >
+        <label>Password</label>
+      </div>
+      <div class="user-box">
+        <input required name="confirmPassword" type="password" [(ngModel)]="confirmPassword" >
+        <label>Confirm Password</label>
+      </div>
+      <button type="submit">
+        <ng-container *ngIf="!loading; else buttonContent">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          Sign Up
+        </ng-container>
+        <ng-template #buttonContent>
+          Sign Up
+        </ng-template>
+      </button>
+    </form>
+
+    <p style="color: #00ffc8;" >Have an account? <a (click)="toLogin()" class="a2">Login!</a></p>
+
+    <div *ngIf="loading" class="spinner">
+      <div class="loader"></div>
+    </div>
+  </div>
+</div>

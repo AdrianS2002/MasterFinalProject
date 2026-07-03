@@ -1,0 +1,3 @@
+await ethers.provider.getTransactionReceipt(0x727d94033a8e61a8911ff9d84ae72222565eab09)
+await ethers.provider.getTransactionReceipt(0x87E8f332f34984728Da4c0A008a495A5Ec4E09a2);
+await ethers.provider.getTransactionReceipt("0x87E8f332f34984728Da4c0A008a495A5Ec4E09a2");

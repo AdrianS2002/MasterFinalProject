@@ -1,0 +1,270 @@
+@if(userRole === 'MANAGER')
+{
+<div class="optimization-wrapper fade-in fade-out">
+  <div class="chart-grid fade-in fade-out">
+    <div class="chart-container line-chart">
+      <h2>Community Energy Optimization</h2>
+      <div class="chart-wrapper" *ngIf="!isLoadingChart; else loadingLine">
+        <!-- <button class="reset-zoom-btn" (click)="resetZoom()" title="Reset Zoom">
+          <img src="zoom.png" alt="Reset" />
+        </button> -->
+        <!-- <canvas baseChart [data]="chartData" [options]="chartOptions" [type]="'line'"></canvas> -->
+         <canvas baseChart
+          [data]="chartResultsData"
+          [options]="chartResultsOptions"
+          [type]="'line'">
+  </canvas>
+        <!-- <div class="heatmap-legend">
+          <div><span class="legend-box" style="background-color: purple"></span>Hour 1</div>
+          <div><span class="legend-box" style="background-color: red"></span>Hour 4</div>
+          <div><span class="legend-box" style="background-color: green"></span>Hour 8</div>
+          <div><span class="legend-box" style="background-color: orange"></span>Hour 12</div>
+          <div><span class="legend-box" style="background-color: fuchsia"></span>Hour 16</div>
+          <div><span class="legend-box" style="background-color: rgb(58, 58, 58)"></span>Hour 20</div>
+          <div><span class="legend-box" style="background-color: rgb(2, 214, 252) "></span>Hour 24</div>
+        </div> -->
+      </div>
+      <ng-template #loadingLine>
+        <div class="loading-background">
+          <app-loading-spinner-chart></app-loading-spinner-chart>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="chart-container">
+      <h2> Community Energy Optimization Map</h2>
+
+      <div class="chart-wrapper" *ngIf="!isLoadingChart; else loadingHeatmap">
+        <canvas baseChart [data]="heatmapData" [options]="heatmapOptions" [type]="'matrix'"></canvas>
+        <div class="heatmap-legend">
+          <div><span class="legend-box" style="background-color: rgba(0, 123, 255, 0.8)"></span> Low (0–11)</div>
+          <div><span class="legend-box" style="background-color: rgba(0, 200, 255, 0.7)"></span> Good (12–22)</div>
+          <div><span class="legend-box" style="background-color: rgba(255, 205, 0, 0.7)"></span> Medium (23–40)</div>
+          <div><span class="legend-box" style="background-color: rgba(255, 140, 0, 0.8)"></span> High (41–89)</div>
+          <div><span class="legend-box" style="background-color: rgba(255, 0, 0, 0.9)"></span> Extreme (90+)</div>
+        </div>
+      </div>
+      <ng-template #loadingHeatmap>
+        <div class="loading-background">
+          <app-loading-spinner-chart></app-loading-spinner-chart>
+        </div>
+      </ng-template>
+
+    </div>
+
+    <div class="chart-container">
+      <h2>Energy Breakdown </h2>
+
+      <div class="breakdown-controls">
+        <div class="dropdown-group left">
+          <label for="userSelect">👤 Select User:</label>
+          <select id="userSelect" [(ngModel)]="selectedBreakdownUser"
+            (change)="loadBreakdownForUser(selectedBreakdownUser!)" class="custom-dropdown">
+            <option *ngFor="let user of breakdownUsers" [value]="user.username">{{ user.username }}</option>
+          </select>
+        </div>
+
+        <div class="dropdown-group right">
+          <label for="metricSelect">View:</label>
+          <select id="metricSelect" [(ngModel)]="selectedBreakdownMetric"
+            (change)="loadBreakdownForUser(selectedBreakdownUser!)" class="custom-dropdown">
+            <option *ngFor="let opt of breakdownMetricOptions" [value]="opt.key">{{ opt.label }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="chart-wrapper" *ngIf="!isLoadingBreakdown && breakdownData; else loadingBreakdown">
+        <canvas baseChart [type]="'bar'" [data]="breakdownData" [options]="breakdownOptions"></canvas>
+      </div>
+
+      <ng-template #loadingBreakdown>
+        <div class="loading-background">
+          <app-loading-spinner-chart></app-loading-spinner-chart>
+        </div>
+      </ng-template>
+    </div>
+
+    <div class="chart-container">
+      <h2>Energy Contribution to Community Cost</h2>
+      <canvas baseChart [type]="'pie'" [data]="costPieData" [options]="costPieOptions"></canvas>
+    </div>
+
+  </div>
+
+  <div class="info-section fade-in fade-out">
+    <!-- <button (click)="triggerGlobalComputation()"><span></span><span></span><span></span><span></span>🔄 Recalculate
+     Community Energy Optimization
+    </button> -->
+    <div *ngIf="isLoading" class="spinner"></div>
+    <div class="frozen-cost fade-in fade-out">
+      💰 Network Cost After Optimization:
+      <strong [ngClass]="{
+                'green': costBeforeOptimization !== null && frozenCost !== null && costBeforeOptimization > frozenCost
+                }">{{ frozenCost ?? '...' }}</strong>
+    </div>
+
+    <div class="frozen-cost fade-in fade-out">
+      💰 Network Cost Before Optimization:
+      <strong [ngClass]="{
+                'red': costBeforeOptimization !== null && frozenCost !== null && costBeforeOptimization > frozenCost
+                }">{{ costBeforeOptimization ?? '...' }}</strong>
+    </div>
+
+    <div class="best-plan fade-in fade-out">
+      📊 Best Global Plan:
+      <code>{{ bestGlobalPlan.join(', ') }}</code>
+    </div>
+
+    <div class="last-updated fade-in fade-out">
+      ⏰ Last Updated Timestamp:
+      <strong>{{ lastUpdatedTime ?? '...' }}</strong>
+    </div>
+
+    <div class="plan-hour-section fade-in fade-out">
+      <div class="plan-hour-row">
+        🔍 Plan for hour:
+        <input type="number" [(ngModel)]="selectedHour" min="0" max="23">
+        <button [disabled]="isLoading1" (click)="fetchPlanForHour()">
+          <span></span><span></span><span></span><span></span>Search</button>
+      </div>
+
+      <div *ngIf="isLoading1" class="spinner small"></div>
+
+      <div *ngIf="planForHour !== null && !isLoading1" class="plan-hour-value">
+        Value: <strong>{{ planForHour }}</strong>
+      </div>
+    </div>
+
+  </div>
+    <!-- ── Cluster Intermediate Plans ──────────────────────────────────────── -->
+  <div class="cluster-section fade-in fade-out">
+    <h2>🔗 Cluster Intermediate Plans</h2>
+    <div *ngIf="isLoadingClusters" class="spinner"></div>
+    <p *ngIf="!isLoadingClusters && clusterSummaries.length === 0" class="no-clusters">
+      No clusters deployed yet.
+    </p>
+    <div class="cluster-grid" *ngIf="!isLoadingClusters && clusterSummaries.length > 0">
+      <div class="cluster-card" *ngFor="let cluster of clusterSummaries">
+        <div class="cluster-header">
+          <h3>{{ cluster.name }}</h3>
+          <span class="cluster-address" title="{{ cluster.address }}">
+            {{ cluster.address.slice(0, 10) }}…{{ cluster.address.slice(-6) }}
+          </span>
+        </div>
+        <div class="cluster-stats">
+          <div class="stat"><span class="label">Nodes</span><strong>{{ cluster.nodeCount }}</strong></div>
+          <div class="stat"><span class="label">Best Cost</span><strong>{{ cluster.clusterBestCost ?? '—' }}</strong></div>
+          <div class="stat">
+            <span class="label">Last Updated</span>
+            <strong>{{ formatClusterTimestamp(cluster.lastUpdatedTimestamp) }}</strong>
+          </div>
+        </div>
+        <div class="cluster-chart-wrapper">
+          <canvas baseChart
+            [data]="getClusterChartData(cluster.address)"
+            [options]="clusterChartOptions"
+            [type]="'line'">
+          </canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}
+@else if (userRole === 'USER') {
+<div class="optimization-wrapper user fade-in fade-out">
+  <div class="user-grid fade-in fade-out">
+
+    <!-- CARDURI CU COSTURI -->
+    <div class="card-grid">
+      <div class="user-card bg-blue">
+        <h3>Estimated Current Cost</h3>
+        <p>{{ currentCost }} $</p>
+      </div>
+
+      <div class="user-card bg-green">
+        <h3>Optimal anterior cost</h3>
+        <p>{{ frozenCost }} $</p>
+      </div>
+
+      <div class="user-card bg-purple" *ngIf="initialTotalCost !== null && optimizedTotalCost !== null">
+        <h3>Potential Economy</h3>
+        <p>{{ ((initialTotalCost - optimizedTotalCost) / initialTotalCost * 100) | number: '1.0-2' }} %</p>
+      </div>
+
+      <div class="user-card bg-orange" *ngIf="initialTotalCost !== null">
+        <h3>Initial Cost (position x tariff)</h3>
+        <p>{{ initialTotalCost | number:'1.0-2' }} $</p>
+      </div>
+
+      <div class="user-card bg-green" *ngIf="optimizedTotalCost !== null">
+        <h3> Cost After Optimization</h3>
+        <p>{{ optimizedTotalCost | number:'1.0-2' }} $</p>
+      </div>
+
+    </div>
+
+    <!-- GRAFICE -->
+    <div class="charts-grid">
+      <div class="chart-container">
+        <h2>Energy Consumption Optimization </h2>
+        <div class="chart-wrapper" *ngIf="!isLoadingChart; else loadingLine">
+          <!-- <button class="reset-zoom-btn" (click)="resetZoomPosition()" title="Reset Zoom">
+            <img class="userImg" src="zoom.png" alt="Reset" />
+          </button> -->
+          <!-- <canvas id="positionChart" baseChart [type]="'line'" [data]="positionChartData"
+            [options]="chartLineOptions"></canvas> -->
+          <canvas baseChart [type]="'bar'" [data]="chartData1" [options]="chartOptions1">
+          </canvas>
+        </div>
+        <ng-template #loadingLine>
+          <div class="loading-background">
+            <app-loading-spinner-chart></app-loading-spinner-chart>
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="chart-container">
+        <h2>Hourly Energy Price</h2>
+        <div class="chart-wrapper" *ngIf="!isLoadingChart; else loadingLine">
+          <canvas baseChart [type]="'bar'" [data]="tariffChartData" [options]="chartBarOptions"></canvas>
+        </div>
+        <ng-template #loadingLine>
+          <div class="loading-background">
+            <app-loading-spinner-chart></app-loading-spinner-chart>
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="chart-container">
+        <h2>Charging Trends & Green Energy Contribution </h2>
+        <div class="chart-wrapper" *ngIf="!isLoadingChart; else loadingLine">
+          <canvas baseChart [type]="'bar'" [data]="batteryChartData" [options]="batteryChartOptions"></canvas>
+        </div>
+        <ng-template #loadingLine>
+          <div class="loading-background">
+            <app-loading-spinner-chart></app-loading-spinner-chart>
+          </div>
+        </ng-template>
+      </div>
+
+      <div class="chart-container">
+        <h2>Energy Profile</h2>
+        <div class="chart-wrapper" *ngIf="!isLoadingChart; else loadingLine">
+          <!-- <button class="reset-zoom-btn" (click)="resetZoomCapacity()" title="Reset Zoom">
+            <img class="userImg" src="zoom.png" alt="Reset" />
+          </button> -->
+          <canvas #capacityChart id="capacityChart" baseChart [type]="'line'" [data]="capacityChartData"
+            [options]="chartLineOptions"></canvas>
+        </div>
+        <ng-template #loadingLine>
+          <div class="loading-background">
+            <app-loading-spinner-chart></app-loading-spinner-chart>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+
+  </div>
+</div>
+}

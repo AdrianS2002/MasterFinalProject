@@ -1,0 +1,113 @@
+.header {
+  position: fixed; 
+  top: 0; 
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding-md);
+  background-color: var(--secondary-bg);
+  border-bottom: 3px solid var(--border-color);
+  width: 100%;
+  height: 60px;
+  z-index:6;
+}
+
+.logo-img {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.nav {
+  cursor: pointer;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-item {
+  text-decoration: none;
+  font-size: 1rem;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 10px 15px;
+  border-radius: var(--border-radius);
+}
+
+.nav-item:hover {
+  color: var(--button-bg);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+.dropdown-content .dropdown-item {
+  display: block;
+  padding: 10px;
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s;
+}
+
+.dropdown-content .dropdown-item:hover {
+  background-color: var(--button-hover-bg);
+  border-radius: var(--border-radius);
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  border-radius: var(--border-radius);
+}
+
+
+.search-container {
+  flex-grow: 1;
+  max-width: 250px;
+  margin-left: 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 20px;
+  background-color: var(--input-bg);
+  color: var(--input-text);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+  border-color: var(--button-bg);
+}
+
+.logout-btn {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: var(--button-hover-bg);
+}
+
+.btn-login{
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+.btn-login:hover{
+  background-color: var(--button-hover-bg);
+}

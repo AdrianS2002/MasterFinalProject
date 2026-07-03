@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "bba246e1-88db-4332-8440-413d16b2f4ee",
+		"name": "TEST-LICENTA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8290273"
+	},
+	"item": [
+		{
+			"name": "test-connections",
+			"item": [
+				{
+					"name": "GET- Parity Accounts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test (\"Get parity accounts \", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test (\"Get parity accounts outputs JSON\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"     pm.response.to.be.ok;\r",
+									"      pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Get parity accounts has 1 accounts\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.length).to.eql(1);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{IP}}:{{PORT}}/blockchain-api/chain/accounts",
+							"host": [
+								"{{IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"blockchain-api",
+								"chain",
+								"accounts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET- Parity Provider",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test (\"Get Parity Provider\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test (\"Get parity provider outputs JSON\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"     pm.response.to.be.ok;\r",
+									"      pm.response.to.be.json;\r",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{IP}}:{{PORT}}/blockchain-api/chain/provider",
+							"host": [
+								"{{IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"blockchain-api",
+								"chain",
+								"provider"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET- Index Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"pm.test (\"Get Index Request\", function(){\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{IP}}:{{PORT}}/blockchain-api/",
+							"host": [
+								"{{IP}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"blockchain-api",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deploy Test Contract",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Deploy Test Contract \", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    pm.expect(pm.response.text()).to.include(\"0x\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{IP}}:{{PORT}}/blockchain-api/test/deploy/dsrl/{{value}}",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"blockchain-api",
+						"test",
+						"deploy",
+						"dsrl",
+						"{{value}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Deploy Number [Test Contract]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Deploy markets manager \", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonValue = JSON.parse(pm.response.text());\r",
+							"    pm.expect(jsonValue).to.eql(Number(pm.collectionVariables.get(\"value\")))\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{IP}}:{{PORT}}/blockchain-api/test/get-number/dsrl",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"blockchain-api",
+						"test",
+						"get-number",
+						"dsrl"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Set Number [Test Contract]",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{IP}}:{{PORT}}/blockchain-api/test/set-number/dsrl/{{new_value}}",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"blockchain-api",
+						"test",
+						"set-number",
+						"dsrl",
+						"{{new_value}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Set Number [Test Contract]",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test (\"Test set Number \", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"    var jsonValue = JSON.parse(pm.response.text());\r",
+							"    var expected_result = Number(pm.collectionVariables.get(\"new_value\")) % 2 == 0 ? \r",
+							"     Number(pm.collectionVariables.get(\"value\")) + Number(pm.collectionVariables.get(\"new_value\")) * 2:\r",
+							"     Number(pm.collectionVariables.get(\"value\")) + Number(pm.collectionVariables.get(\"new_value\"));\r",
+							"    pm.expect(jsonValue).to.eql(expected_result);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{IP}}:{{PORT}}/blockchain-api/test/get-number/dsrl",
+					"host": [
+						"{{IP}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"blockchain-api",
+						"test",
+						"get-number",
+						"dsrl"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.collectionVariables.set(\"PORT\", \"3000\")",
+					"pm.collectionVariables.set(\"IP\", \"localhost\")",
+					"",
+					"",
+					"pm.collectionVariables.set(\"value\", \"15\")",
+					"pm.collectionVariables.set(\"new_value\", \"20\")"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "PORT",
+			"value": ""
+		},
+		{
+			"key": "IP",
+			"value": ""
+		},
+		{
+			"key": "value",
+			"value": ""
+		},
+		{
+			"key": "new_value",
+			"value": ""
+		}
+	]
+}

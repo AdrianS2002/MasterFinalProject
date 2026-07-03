@@ -1,0 +1,163 @@
+@if(userRole === null)
+{
+
+<div class="home-wrapper">
+
+  <div class="home-container">
+
+    <section class="hero fade-in fade-out">
+      <h1>Smart Energy Consumption Optimization</h1>
+    </section>
+
+    <section class="description section-box fade-in fade-out">
+      <h2>What is this platform?</h2>
+      <p>
+        This application leverages blockchain technology and a particle swarm optimization (PSO) algorithm
+        to compute the most efficient energy usage plan for a distributed grid. Each node (house) submits their
+        best
+        consumption plan, and the system aggregates this data to calculate an optimal global strategy.
+      </p>
+    </section>
+
+    <section class="benefits section-box fade-in fade-out">
+      <h2>Why join?</h2>
+      <ul>
+        <li>⚡ Intelligent and automated energy optimization</li>
+        <li>💰 Reduce your energy bills by smart planning</li>
+        <li>🌱 Maximize the use of renewables and battery storage</li>
+        <li>🔐 Transparent and secure via blockchain technology</li>
+      </ul>
+    </section>
+
+    <section class="call-to-action section-box fade-in fade-out">
+      <p>🔒 Log in to manage your energy plan and participate in the optimization process.</p>
+      <div class="buttons">
+        <button (click)="navigateToLogin()" class="btn btn-primary">
+          <span></span><span></span><span></span><span></span>
+          Login
+        </button>
+        <button (click)="navigateToSignUp()" class="btn btn-secondary">
+          <span></span><span></span><span></span><span></span>
+          Sign Up
+        </button>
+      </div>
+    </section>
+
+    <section class="preview section-box fade-in fade-out">
+      <h2>Public Network Overview</h2>
+      <p>Last global update: <strong>~3 hours ago</strong></p>
+      <p>Estimated total network cost: <strong>2,431 units</strong></p>
+      <p class="note">* Log in to see your personal optimization data and detailed analytics.</p>
+
+      <div class="chart-placeholder">
+        <canvas baseChart [type]="lineChartType" [data]="lineChartData" [options]="lineChartOptions">
+        </canvas>
+      </div>
+    </section>
+  </div>
+
+</div>
+
+}
+@else if (userRole === 'MANAGER') {
+
+<div class="home-wrapper manager">
+  <div class="home-container manager">
+    <section class="hero manager">
+      <h1 class="greeting">Welcome back, {{username}}!</h1>
+    </section>
+
+    <section class="call-to-action section-box manager">
+      <div class="buttons-contMan">
+        <button (click)="navigateToManageUsers()" class="btn btn-primary">
+          <span></span><span></span><span></span><span></span>
+          <img src="management.png" alt="Manage Users" class="manage-icon" />
+          <h3>Manage Users</h3>
+        </button>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+}
+@else {
+<div class="home-wrapper user">
+  <div class="home-container">
+    <section class="hero user">
+      <h1 class="greeting">Welcome back, {{ username }}!</h1>
+    </section>
+
+    <section class="section-box user-section fade-in fade-out position-relative">
+      <h2>🔌 Your Consumption Point</h2>
+
+      <div class="unassign-wrapper" *ngIf="userConsumptionPoint">
+        <button class="btn-unassign" (click)="unassignConsumptionPoint()" title="Remove Consumption Point">
+          <img src="eco-house.png" alt="Unassign" class="unassign-icon" />
+        </button>
+      </div>
+
+
+      <ul *ngIf="userConsumptionPoint">
+        <li>🏠 Consumption Point Name: <strong>{{ userConsumptionPoint.name.replace('Node', 'Home') }}</strong></li>
+        <li>📜 Address: <strong>{{ userConsumptionPoint.address }}</strong></li>
+        <li *ngIf="userLocation">🌍 Location: <strong>{{ userLocation.country }}, {{ userLocation.city }}, {{
+            userLocation.address }}</strong></li>
+      </ul>
+
+      <div *ngIf="!userConsumptionPoint && unassignedNodes.length" class="dropdown-container">
+        <label for="node-select" class="dropdown-label">Assign a consumption point:</label>
+        <select id="node-select" class="custom-dropdown" [(ngModel)]="selectedNodeId">
+          <option [ngValue]="null" disabled>-- Select a node --</option>
+          <option *ngFor="let node of unassignedNodes" [ngValue]="node.id">
+            {{ node.name }} ({{ node.address }})
+          </option>
+        </select>
+
+        <button class="btn btn-primary" style="margin-top: 0.8rem;" (click)="assignNodeToUser()"
+          [disabled]="!selectedNodeId">
+          Confirm Assign
+        </button>
+      </div>
+
+
+      <div *ngIf="!userConsumptionPoint && !unassignedNodes.length">
+        <p>⚠️ No unassigned nodes available at the moment.</p>
+      </div>
+    </section>
+    <section class="section-box optimization-wrapper fade-in">
+  <h2>📊 Hourly Energy Breakdown</h2>
+
+  <div class="plan-hour-section">
+    <label for="metricSelect">View:</label>
+    <select id="metricSelect" [(ngModel)]="selectedMetric" class="custom-dropdown">
+      <option *ngFor="let opt of breakdownMetricOptions" [ngValue]="opt.key">
+        {{ opt.label }}
+      </option>
+    </select>
+  </div>
+
+  <div class="chart-grid">
+    <div class="chart-container">
+      <div class="chart-wrapper" *ngIf="!isLoadingChart; else loadingLine">
+        <canvas baseChart
+          [data]="breakdownChartData"
+          [options]="breakdownChartOptions"
+          [type]="'bar'">
+        </canvas>
+      </div>
+  
+      <ng-template #loadingLine>
+        <div class="loading-background">
+          <app-loading-spinner-chart></app-loading-spinner-chart>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+  
+</section>
+
+  </div>
+</div>
+}

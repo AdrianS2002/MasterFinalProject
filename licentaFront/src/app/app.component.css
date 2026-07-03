@@ -1,0 +1,74 @@
+.transition {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  .transition-row {
+    flex: 1;
+    display: flex;
+  }
+  
+  .transition-row.row-1 .block {
+    transform-origin: top;
+  }
+  
+  .transition-row.row-2 .block {
+    transform-origin: bottom;
+  }
+  
+  /* Folosim culori diferite pentru fiecare bloc din primul rând */
+  .transition-row.row-1 .block:nth-child(1) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(15, 28, 45, 0.85);
+  }
+  .transition-row.row-1 .block:nth-child(2) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(21, 35, 55, 0.85);
+  }
+  .transition-row.row-1 .block:nth-child(3) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(27, 42, 65, 0.85);
+  }
+  .transition-row.row-1 .block:nth-child(4) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(33, 50, 75, 0.85);
+  }
+  .transition-row.row-1 .block:nth-child(5) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(39, 57, 85, 0.85);
+  }
+  
+  /* Și culori pentru blocurile din al doilea rând */
+  .transition-row.row-2 .block:nth-child(1) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 77, 77, 0.85);
+  }
+  .transition-row.row-2 .block:nth-child(2) {
+    backdrop-filter: blur(8px);
+    background-color:  rgba(0, 88, 88, 0.85);
+  }
+  .transition-row.row-2 .block:nth-child(3) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 99, 99, 0.85);
+  }
+  .transition-row.row-2 .block:nth-child(4) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 110, 110, 0.85);
+  }
+  .transition-row.row-2 .block:nth-child(5) {
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 121, 121, 0.85);
+  }
+  
+  .block {
+    flex: 1;
+    transform: scaleY(1);
+    will-change: transform;
+  }

@@ -1,0 +1,270 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "D:\\Facultate\\Master\\Dizertatie\\FinalProjectUni-dev (2)\\FinalProjectUni-dev\\FinalProjectUni-dev\\blockchain-api\\contracts\\ClusterContract.sol": {
+      "lastModificationDate": 1782883961652,
+      "contentHash": "59034ae207cfc2fb5fbcca13c07a17ad",
+      "sourceName": "contracts/ClusterContract.sol",
+      "solcConfig": {
+        "version": "0.8.23",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "ClusterContract",
+        "IGlobalContract"
+      ]
+    },
+    "D:\\Facultate\\Master\\Dizertatie\\FinalProjectUni-dev (2)\\FinalProjectUni-dev\\FinalProjectUni-dev\\blockchain-api\\contracts\\DateTime.sol": {
+      "lastModificationDate": 1782883961662,
+      "contentHash": "c7589ae4ba5840b79d0049cb1475f2c1",
+      "sourceName": "contracts/DateTime.sol",
+      "solcConfig": {
+        "version": "0.8.23",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.10"
+      ],
+      "artifacts": [
+        "DateTime"
+      ]
+    },
+    "D:\\Facultate\\Master\\Dizertatie\\FinalProjectUni-dev (2)\\FinalProjectUni-dev\\FinalProjectUni-dev\\blockchain-api\\contracts\\TestContract.sol": {
+      "lastModificationDate": 1782883961701,
+      "contentHash": "e5cb77e93d1623f5d540f5c4de396a9c",
+      "sourceName": "contracts/TestContract.sol",
+      "solcConfig": {
+        "version": "0.8.23",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./DateTime.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.10"
+      ],
+      "artifacts": [
+        "TestContract"
+      ]
+    },
+    "D:\\Facultate\\Master\\Dizertatie\\FinalProjectUni-dev (2)\\FinalProjectUni-dev\\FinalProjectUni-dev\\blockchain-api\\contracts\\DayAheadMarket.sol": {
+      "lastModificationDate": 1782883961669,
+      "contentHash": "b03b14c82835aa8ce6dbcd848c810a88",
+      "sourceName": "contracts/DayAheadMarket.sol",
+      "solcConfig": {
+        "version": "0.8.23",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "DayAheadMarket"
+      ]
+    },
+    "D:\\Facultate\\Master\\Dizertatie\\FinalProjectUni-dev (2)\\FinalProjectUni-dev\\FinalProjectUni-dev\\blockchain-api\\contracts\\GlobalContract.sol": {
+      "lastModificationDate": 1782883961677,
+      "contentHash": "be5f0ea65d01965377338ecbf8e86327",
+      "sourceName": "contracts/GlobalContract.sol",
+      "solcConfig": {
+        "version": "0.8.23",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "GlobalContract",
+        "GlobalContractInterface"
+      ]
+    },
+    "D:\\Facultate\\Master\\Dizertatie\\FinalProjectUni-dev (2)\\FinalProjectUni-dev\\FinalProjectUni-dev\\blockchain-api\\contracts\\IntradayMarket.sol": {
+      "lastModificationDate": 1782883961687,
+      "contentHash": "b7285bb96c0938654bd4bd03d728613d",
+      "sourceName": "contracts/IntradayMarket.sol",
+      "solcConfig": {
+        "version": "0.8.23",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IntradayMarket"
+      ]
+    },
+    "D:\\Facultate\\Master\\Dizertatie\\FinalProjectUni-dev (2)\\FinalProjectUni-dev\\FinalProjectUni-dev\\blockchain-api\\contracts\\Node.sol": {
+      "lastModificationDate": 1782883961694,
+      "contentHash": "062d787598a230203db49be7d709b905",
+      "sourceName": "contracts/Node.sol",
+      "solcConfig": {
+        "version": "0.8.23",
+        "settings": {
+          "optimizer": {
+            "enabled": true,
+            "runs": 200
+          },
+          "viaIR": true,
+          "evmVersion": "paris",
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "GlobalContractInterface",
+        "IClusterContract",
+        "Node"
+      ]
+    }
+  }
+}

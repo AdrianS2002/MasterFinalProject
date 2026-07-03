@@ -1,0 +1,21 @@
+<header class="header">
+    <div class="logo" (click)="navigateToHome()">
+      <img src="recycling.png" alt="logo" class="logo-img">
+    </div>
+  
+    <nav class="nav">
+      <a (click)="navigateToHome()" class="nav-item">Home</a>
+      <a (click)="navigateToOptimization()" class="nav-item">Optimization</a>
+      <a (click)="navigateToAbout()" class="nav-item">About</a>
+      <a (click)="navigateToMarket()" class="nav-item">Market</a>
+      <div class="auth-buttons" *ngIf="isLoggedIn; else loggedOutTemplate">
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </div>
+  
+      <ng-template #loggedOutTemplate>
+        <div class="auth-buttons">
+          <button class="btn-login" (click)="navigateToLogin()">Login</button>
+        </div>
+      </ng-template>
+    </nav>
+  </header>

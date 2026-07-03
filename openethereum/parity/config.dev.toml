@@ -1,0 +1,14 @@
+[parity]
+chain = "chainspec.json"
+base_path = "."
+[network]
+port = 30300
+id = 35
+[rpc]
+port = 8540
+apis = ["web3", "eth", "net", "personal", "parity", "parity_set", "traces", "parity_accounts", "pubsub", "parity_pubsub"]
+[account]
+password = ["pass.txt"]
+[mining]
+engine_signer = "0x727d94033a8e61a8911ff9d84ae72222565eab06"
+reseal_on_txs = "none"
